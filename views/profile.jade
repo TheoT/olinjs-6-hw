@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	body(style="background-color:#{dispUser.style.backgroundCol};")
+		div 
+			h1 #{dispUser.name}
+		div
+			img(src='#{dispUser.picUrl}')
+		div
+			input(type="button", onclick="parent.location='/edit'", value='Edit Profile')
+			form(method='post', action='/logout')
+				button(type='submit') Logout

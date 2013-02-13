@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	body
+		div 
+			h3 Edit #{dispUser.name}'s Profile
+		div
+			form(method='post', action='/edit/save')
+				select(name='backgroundCol')
+					option(value='#3399FF') Blue
+					option(value='#66FF66') Green
+					option(value='#FFFFFF') White
+					option(value='#FF99CC') Pink
+				button(type='submit') Save Changes
