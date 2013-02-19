@@ -8,6 +8,9 @@ exports.index = function(req, res){
   		res.redirect('/login');
   	}
   	else{
-  		res.render('profile',{dispUser: req.session.user, title:'Profile'});
+  		req.facebook.api('/me/photos',function(err,photoData){
+
+			res.render('profile',{photos:photoData.data, dispUser: req.session.user, title:'Profile'});
+  		})
   	}
 };

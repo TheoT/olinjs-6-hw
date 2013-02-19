@@ -41,6 +41,7 @@ exports.login=function(req,res){
 			}
 		});
 	});
+
 }
 
 exports.logout=function(req,res){
@@ -67,4 +68,13 @@ exports.saveProfile=function(req,res){
 		req.session.user.style.backgroundCol=req.body.backgroundCol;
 		res.redirect('/')
 	});
+};
+
+exports.comment=function(req,res){
+	console.log(req.body.photoId);
+	console.log(req.body.commentText);
+	obUrl='/'+req.body.photoId+'/comments/';
+	req.facebook.api(obUrl, 'post', { message : req.body.commentText}, function (err, data) {
+		res.send(!err);		
+	})
 };

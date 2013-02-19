@@ -38,11 +38,12 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.get('/login',Facebook.loginRequired(),user.login);
+app.get('/login',Facebook.loginRequired({scope: ['user_photos', 'friends_photos', 'publish_stream']}),user.login);
 app.post('/logout',user.logout);
 app.get('/logout',routes.index);
 app.get('/edit', profile.edit);
 app.post('/edit/save',user.saveProfile);
+app.post('/comment',user.comment)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

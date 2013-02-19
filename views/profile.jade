@@ -1,12 +1,28 @@
 extends layout
-
 block content
 	body(style="background-color:#{dispUser.style.backgroundCol};")
-		div 
-			h1 #{dispUser.name}
-		div
-			img(src='#{dispUser.picUrl}')
-		div
+		div(class='row')
+			div(class="span2")
+				img(src='#{dispUser.picUrl}')
+			div(class="span4")
+				h1 #{dispUser.name}
+		div(class='row')
+			div(class="span2")
+			div(id='photoContainer',class="span8")
+				div(class='row')
+					a(href="#", id="ui-carousel-next", class="span1") Next
+					div(class="span6")
+						div(id='carousel')
+							each photo,i in photos
+								img(src=photo.source, photoID=photo.id, id="currentPhoto")
+						div(class="row")
+							div(class="span4")
+								input(type="text", id="commentText")
+							div(class="span2")
+								button(id="submitComment") Submit Comment
+					a(href="#", id="ui-carousel-prev",class="span1") Previous
+			div(class="span2")
+		div(class="row")
 			input(type="button", onclick="parent.location='/edit'", value='Edit Profile')
 			form(method='post', action='/logout')
 				button(type='submit') Logout
